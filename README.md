@@ -29,7 +29,7 @@ Follow the steps below to set up and use this WebXR template:
     // ======================================
     ```
 
-5. Replace the `'/building/build_001.fbx'` path with the path to your own uploaded FBX file. Make sure the FBX file is accessible and located within your project directory.
+5. Replace the `'/building/build_001.fbx'` path with the path to your own uploaded FBX file. Make sure the FBX file is accessible and located within your project directory or it's uploaded on the codesandbox `'/public/'` folder.
 
 6. Adjust the `scale` variable to scale your model appropriately.
 
@@ -43,7 +43,7 @@ Follow the steps below to set up and use this WebXR template:
     npm run dev
     ```
 
-10. After the development server starts, open your browser and navigate to the provided local URL (usually http://localhost:5173).
+10. After the development server starts, open your browser and navigate to the provided local URL (usually http://localhost:5173). If you use https://codesandbox.io enter the address of the deployed application on your preferred browser.
 
 11. If your browser supports WebXR, you will see an "AR" button. Click the button to enter the augmented reality mode. If your browser does not support WebXR, you can use the WebXR viewer app on your phone to view the AR experience.
 
