@@ -1,33 +1,38 @@
-import { XR, RayGrab, useHitTest } from "@react-three/xr"
+import { RayGrab, useHitTest } from "@react-three/xr"
 import { useFBX } from "@react-three/drei"
 import React from "react"
 
-export function HitTest(props) {
+export default function ARScene() {
+
+    // ========== CHANGE THESE LINES ==========
+
+    // Replace the path with the path to your own uploaded FBX file
+    const model = useFBX('/building/build_001.fbx')
+
+    // Replace this number to scale your model
+    const scale = 0.01
+
+    // ======================================
+
     const modelRef = React.useRef()
 
     // Used to move the model to the hit point
-    useHitTest((hitMatrix) => {
+    useHitTest((hitMatrix, hit) => {
         if (modelRef.current) {
-            console.log(modelRef.current.position)
             hitMatrix.decompose(modelRef.current.position, modelRef.current.quaternion, modelRef.current.scale)
+            modelRef.current.scale.multiplyScalar(scale)
         }
+
+        console.log(modelRef.current.quaternion)
     })
-
-    return <primitive ref={modelRef} {...props} scale={0.01} />
-}
-
-export default function ARScene() {
-    const model = useFBX('/building/build_001.fbx')
 
     return (
         <>
             <directionalLight intensity={1} position={[1, 2, 3]} />
             <ambientLight intensity={0.2} />
-            <XR>
-                <RayGrab>
-                    <HitTest object={model} />
-                </RayGrab>
-            </XR>
+            <RayGrab>
+                <primitive ref={modelRef} object={model} scale={scale} />
+            </RayGrab>
         </>
     )
 }
