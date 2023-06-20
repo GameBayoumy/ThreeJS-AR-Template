@@ -1,6 +1,6 @@
 {
     "asset" : {
-        "generator" : "Khronos glTF Blender I/O v3.2.40",
+        "generator" : "Khronos glTF Blender I/O v1.7.33",
         "version" : "2.0"
     },
     "scene" : 0,
@@ -27,7 +27,7 @@
     "materials" : [
         {
             "doubleSided" : true,
-            "name" : "m1.001",
+            "name" : "m1.002",
             "normalTexture" : {
                 "index" : 0
             },
@@ -35,8 +35,7 @@
                 "baseColorTexture" : {
                     "index" : 1
                 },
-                "metallicFactor" : 0,
-                "roughnessFactor" : 0.5
+                "metallicFactor" : 0
             }
         }
     ],
@@ -82,29 +81,29 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 3826,
+            "count" : 3822,
             "max" : [
-                60.04098129272461,
-                459.0824279785156,
-                256.9583740234375
+                0.11445999890565872,
+                0.1028439998626709,
+                0.10474000126123428
             ],
             "min" : [
-                -176.3265380859375,
-                274.44366455078125,
-                63.30305480957031
+                -0.12190700322389603,
+                -0.08179499953985214,
+                -0.08891499787569046
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 3826,
+            "count" : 3822,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 3826,
+            "count" : 3822,
             "type" : "VEC2"
         },
         {
@@ -117,23 +116,23 @@
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 45912,
+            "byteLength" : 45864,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 45912,
-            "byteOffset" : 45912
+            "byteLength" : 45864,
+            "byteOffset" : 45864
         },
         {
             "buffer" : 0,
-            "byteLength" : 30608,
-            "byteOffset" : 91824
+            "byteLength" : 30576,
+            "byteOffset" : 91728
         },
         {
             "buffer" : 0,
             "byteLength" : 33918,
-            "byteOffset" : 122432
+            "byteOffset" : 122304
         }
     ],
     "samplers" : [
@@ -144,7 +143,7 @@
     ],
     "buffers" : [
         {
-            "byteLength" : 156352,
+            "byteLength" : 156224,
             "uri" : "20120001-BKD-DeathMask_Low.bin"
         }
     ]

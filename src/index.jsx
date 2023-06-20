@@ -1,14 +1,9 @@
 import "./style.css";
 import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
-import {
-  Environment,
-  OrbitControls,
-  Html,
-  useProgress
-} from "@react-three/drei";
+import { OrbitControls, Html, useProgress } from "@react-three/drei";
 import Scene from "./Scene";
-import { ARButton } from "@react-three/xr";
+import { XR, ARButton } from "@react-three/xr";
 import { Suspense } from "react";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
@@ -16,25 +11,36 @@ const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(
   <>
     <ARButton />
-    <Canvas>
-      <OrbitControls />
-      {/* <Environment preset="city" background blur={0.6} /> */}
-      <Environment background resolution={64}>
-        <Striplight position={[10, 2, 0]} scale={[1, 3, 10]} />
-        <Striplight position={[-10, 2, 0]} scale={[1, 3, 10]} />
-        <mesh scale={100}>
-          <sphereGeometry args={[1, 64, 64]} />
-          <LayerMaterial side={THREE.BackSide}>
-            <Base color="blue" alpha={1} mode="normal" />
-            <Depth colorA="#00ffff" colorB="#ff8f00" alpha={0.5} mode="normal" near={0} far={300} origin={[100, 100, 100]} />
-            <Noise mapping="local" type="cell" scale={0.5} mode="softlight" />
-          </LayerMaterial>
-        </mesh>
-      </Environment>
-      <Suspense fallback={<Loader />}>
-        <Scene />
-      </Suspense>
+    <Canvas
+      dpr={[1, 1.5]}
+      shadows
+      camera={{ position: [0, 0, 4], fov: 35 }}
+      gl={{ alpha: true }}
+    >
+      <XR>
+        <OrbitControls
+          // autoRotate
+          autoRotateSpeed={1.2}
+          enablePan={false}
+          enableZoom={true}
+          minDistance={1.2}
+          maxDistance={5}
+          minPolarAngle={Math.PI / 2.1}
+          maxPolarAngle={Math.PI / 2.1}
+        />
+        <Suspense fallback={<Loader />}>
+          <Scene />
+        </Suspense>
+      </XR>
     </Canvas>
+    <div id="info-box">
+      <div id="comment">
+        <div style={{ marginBottom: 4 }}>Build by —
+          <img src="/favicon-16x16.png" /> Zone
+        </div>
+        <img src="tudelft-nmc-200px.png" />
+      </div>
+    </div>
   </>
 );
 
