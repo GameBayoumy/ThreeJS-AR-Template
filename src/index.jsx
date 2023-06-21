@@ -5,7 +5,6 @@ import { OrbitControls, Html, useProgress } from "@react-three/drei";
 import Scene from "./Scene";
 import { XR, ARButton } from "@react-three/xr";
 import { Suspense } from "react";
-
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 root.render(
@@ -19,7 +18,7 @@ root.render(
     >
       <XR>
         <OrbitControls
-          // autoRotate
+          autoRotate
           autoRotateSpeed={1.2}
           enablePan={false}
           enableZoom={true}
@@ -35,14 +34,13 @@ root.render(
     </Canvas>
     <div id="info-box">
       <div id="comment">
-        <div style={{ marginBottom: 4 }}>Build by —
-          <img src="/favicon-16x16.png" /> Zone
+        <div style={{ marginBottom: 4 }}>Build by — <img src="/favicon-16x16.png" /> Zone
         </div>
         <img src="tudelft-nmc-200px.png" />
       </div>
     </div>
   </>
-);
+)
 
 function Loader() {
   const { progress } = useProgress();
