@@ -17,7 +17,7 @@ export default function ARScene() {
     <>
       <group position={[0, -0.65, 0]}>
         {/* Disables shadows when XR isPresenting */}
-        <AccumulativeShadows temporal frames={200} color="purple" colorBlend={0.5} opacity={isPresenting ? 0 : 1} scale={10} alphaTest={0.85}>
+        <AccumulativeShadows temporal frames={200} color="yellow" colorBlend={0.5} opacity={isPresenting ? 0 : 1} scale={10} alphaTest={0.85}>
           <RandomizedLight amount={5} radius={4} ambient={0.3} position={[5, 3, 2]} bias={0.001} />
         </AccumulativeShadows >
         <Effects isPresenting={isPresenting} />
@@ -31,9 +31,8 @@ export default function ARScene() {
   )
 }
 
-export function DeathMask(props) {
-  const { nodes, materials } = useGLTF(props.modelPath)
-  const { model } = props
+export function DeathMask({ model, modelPath, isPresenting }) {
+  const { nodes, materials } = useGLTF(modelPath)
 
   materials[materialName].normalMapType = 1 // 0 For Tangent & 1 For Object space
 
@@ -53,14 +52,14 @@ export function DeathMask(props) {
     const rotationSpeed = 0.1
 
     const rotation = Math.PI * (clock.getElapsedTime() * rotationSpeed) * Math.PI
-    if (model.current && props.isPresenting) {
+    if (model.current && isPresenting) {
       model.current.rotation.x = Math.cos(rotation)
       model.current.rotation.z = Math.sin(rotation)
     }
   })
 
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null}>
       <mesh ref={model} castShadow receiveShadow scale={5} geometry={nodes[fileName].geometry} material={materials[materialName]} rotation={[Math.PI / 2, 0, 0]} />
     </group>
   )

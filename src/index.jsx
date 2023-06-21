@@ -5,6 +5,8 @@ import { OrbitControls, Html, useProgress } from "@react-three/drei";
 import Scene from "./Scene";
 import { XR, ARButton } from "@react-three/xr";
 import { Suspense } from "react";
+import { CircularProgress } from "@mui/joy";
+
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 root.render(
@@ -34,7 +36,7 @@ root.render(
     </Canvas>
     <div id="info-box">
       <div id="comment">
-        <div style={{ marginBottom: 4 }}>Build by — <img src="/favicon-16x16.png" /> Zone
+        <div style={{ marginBottom: 4 }}>Build by — <img src="/xrzone-16x16.png" /> Zone
         </div>
         <img src="tudelft-nmc-200px.png" />
       </div>
@@ -44,5 +46,16 @@ root.render(
 
 function Loader() {
   const { progress } = useProgress();
-  return <Html center>{progress} % loaded</Html>;
+  return <Html center>
+    <CircularProgress
+
+      determinate
+      soft="true"
+      size="lg"
+      color="neutral"
+      value={progress}
+    >
+      {Math.trunc(progress)}%
+    </CircularProgress>
+  </Html>;
 }
