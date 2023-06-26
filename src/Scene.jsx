@@ -19,9 +19,8 @@ import React, { useRef, useState, useTransition } from "react";
 const useGltfjsx = true;
 const fileName = "20120001-BKD-DeathMask_Low";
 const materialName = "m1.002";
-const modelPath = `/models/${
-  useGltfjsx ? "gltfjsx/" + fileName + "-transformed.glb" : fileName + ".gltf"
-}`;
+const modelPath = `/models/${useGltfjsx ? "gltfjsx/" + fileName + "-transformed.glb" : fileName + ".gltf"
+  }`;
 
 export default function ARScene() {
   const { isPresenting } = useXR();
@@ -188,9 +187,6 @@ function Env({ isPresenting }) {
         "park",
         "lobby",
       ],
-      // If onChange is present the value will not be reactive, see https://github.com/pmndrs/leva/blob/main/docs/advanced/controlled-inputs.md#onchange
-      // Instead we transition the preset value, which will prevents the suspense bound from triggering its fallback
-      // That way we can hang onto the current environment until the new one has finished loading ...
       onChange: (value) => startTransition(() => setPreset(value)),
     },
   });
