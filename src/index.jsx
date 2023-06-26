@@ -20,7 +20,7 @@ root.render(
     >
       <XR>
         <OrbitControls
-          // autoRotate
+          autoRotate
           autoRotateSpeed={1.2}
           enablePan={false}
           enableZoom={true}
