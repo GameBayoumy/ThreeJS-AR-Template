@@ -20,7 +20,7 @@ root.render(
     >
       <XR>
         <OrbitControls
-          autoRotate
+          // autoRotate
           autoRotateSpeed={1.2}
           enablePan={false}
           enableZoom={true}
@@ -36,26 +36,28 @@ root.render(
     </Canvas>
     <div id="info-box">
       <div id="comment">
-        <div style={{ marginBottom: 4 }}>Build by — <img src="/xrzone-16x16.png" /> Zone
+        <div style={{ marginBottom: 4 }}>
+          Built by — <img src="/xrzone-16x16.png" /> Zone
         </div>
         <img src="tudelft-nmc-200px.png" />
       </div>
     </div>
   </>
-)
+);
 
 function Loader() {
   const { progress } = useProgress();
-  return <Html center>
-    <CircularProgress
-
-      determinate
-      soft="true"
-      size="lg"
-      color="neutral"
-      value={progress}
-    >
-      {Math.trunc(progress)}%
-    </CircularProgress>
-  </Html>;
+  return (
+    <Html center>
+      <CircularProgress
+        determinate
+        soft="true"
+        size="lg"
+        color="neutral"
+        value={progress}
+      >
+        {Math.trunc(progress)}%
+      </CircularProgress>
+    </Html>
+  );
 }
