@@ -24,8 +24,8 @@ root.render(
           autoRotateSpeed={1.2}
           enablePan={false}
           enableZoom={true}
-          minDistance={1.2}
-          maxDistance={5}
+          minDistance={0.5}
+          maxDistance={3}
           minPolarAngle={Math.PI / 2.1}
           maxPolarAngle={Math.PI / 2.1}
         />

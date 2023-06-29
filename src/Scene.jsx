@@ -17,10 +17,11 @@ import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import React, { useRef, useState, useTransition } from "react";
 
 const useGltfjsx = true;
-const fileName = "20120001-BKD-DeathMask_Low";
-const materialName = "m1.002";
-const modelPath = `/models/${useGltfjsx ? "gltfjsx/" + fileName + "-transformed.glb" : fileName + ".gltf"
-  }`;
+const fileName = "Vase_Low";
+const materialName = "Default OBJ";
+const modelPath = `/models/${
+  useGltfjsx ? "gltfjsx/" + fileName + "-transformed.glb" : fileName + ".gltf"
+}`;
 
 export default function ARScene() {
   const { isPresenting } = useXR();
@@ -28,7 +29,7 @@ export default function ARScene() {
 
   return (
     <>
-      <group position={[0, -0.65, 0]}>
+      <group position={[0, -0.3, 0]}>
         {/* Disables shadows when XR isPresenting */}
         {!isPresenting && (
           <GizmoHelper
@@ -63,7 +64,7 @@ export default function ARScene() {
         <Env isPresenting={isPresenting} />
 
         <Center top>
-          <DeathMask
+          <Model
             model={model}
             modelPath={modelPath}
             isPresenting={isPresenting}
@@ -74,14 +75,12 @@ export default function ARScene() {
   );
 }
 
-export function DeathMask({ model, modelPath, isPresenting }) {
+export function Model({ model, modelPath, isPresenting }) {
   const { nodes, materials } = useGLTF(modelPath);
   const [wireframe, setWireframe] = useState(false);
   const [roughness, setRoughness] = useState(materials[materialName].roughness);
   const [metallic, setMetallic] = useState(materials[materialName].metalness);
-  const [normalScale, setNormalScale] = useState(
-    materials[materialName].normalScale.x
-  );
+  const scale = 1;
 
   useControls({
     roughness: {
@@ -108,15 +107,6 @@ export function DeathMask({ model, modelPath, isPresenting }) {
         setWireframe(value);
       },
     },
-    normalScale: {
-      value: normalScale,
-      min: 0,
-      max: 1,
-      step: 0.01,
-      onChange: (value) => {
-        setNormalScale(value);
-      },
-    },
   });
 
   // Used to move the model to the hit point
@@ -127,6 +117,8 @@ export function DeathMask({ model, modelPath, isPresenting }) {
         model.current.quaternion,
         model.current.scale
       );
+
+      model.current.scale.addScalar(scale);
     }
   });
 
@@ -142,23 +134,20 @@ export function DeathMask({ model, modelPath, isPresenting }) {
     }
   });
 
-  console.log(materials[materialName]);
-
   return (
     <group dispose={null}>
       <mesh
         ref={model}
         castShadow
         receiveShadow
-        scale={5}
+        scale={scale}
         geometry={nodes[fileName].geometry}
         material={materials[materialName]}
         material-roughness={roughness}
         material-metalness={metallic}
         material-normalMapType={1}
-        material-normalScale={[normalScale, -normalScale]}
         material-wireframe={wireframe}
-        rotation={[Math.PI / 2, 0, 0]}
+        rotation={[0, 0, 0]}
       />
     </group>
   );
